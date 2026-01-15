@@ -203,6 +203,8 @@ app.delete('/api/orders/:id', (req, res) => {
   writeDB(db); // SIMPAN PERMANEN
   res.json({ message: 'Deleted' });
 });
+app.get("/", (req, res) => { res.send("Express on Vercel"); });
+module.exports = app;
 
 // START SERVER
-app.listen(PORT, () => console.log(`SERVER DATABASE AKTIF DI http://localhost:${PORT}`));
+// app.listen(PORT, () => console.log(`SERVER DATABASE AKTIF DI http://localhost:${PORT}`));
