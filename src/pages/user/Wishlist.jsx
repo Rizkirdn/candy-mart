@@ -32,7 +32,7 @@ export default function Wishlist() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      <h1 className="text-3xl font-bold text-gray-900 mb-8 font-sans">Barang Impian ({favorites.length})</h1>
+      <h1 className="text-3xl font-bold text-gray-900 mb-8 font-sans">Wishlist ({favorites.length})</h1>
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
         {favorites.map((product) => (

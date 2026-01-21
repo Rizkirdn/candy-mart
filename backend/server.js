@@ -15,7 +15,7 @@ const DB_FILE = path.join(__dirname, 'database.json');
 app.use(cors());
 app.use(express.json());
 
-// --- FUNGSI BANTUAN DATABASE (BACA & TULIS) ---
+// --- FUNCTION BANTUAN DATABASE BACA & TULIS ---
 const readDB = () => {
   try {
     const data = fs.readFileSync(DB_FILE, 'utf-8');
@@ -40,7 +40,7 @@ app.post('/api/register', (req, res) => {
   }
 
   const newUser = {
-    id: Date.now(), // Gunakan timestamp agar ID unik
+    id: Date.now(), 
     name,
     email,
     password,
@@ -49,7 +49,7 @@ app.post('/api/register', (req, res) => {
   };
 
   db.users.push(newUser);
-  writeDB(db); // SIMPAN PERMANEN
+  writeDB(db); 
   res.status(201).json({ message: 'Registrasi berhasil', user: newUser });
 });
 
@@ -203,8 +203,6 @@ app.delete('/api/orders/:id', (req, res) => {
   writeDB(db); // SIMPAN PERMANEN
   res.json({ message: 'Deleted' });
 });
-app.get("/", (req, res) => { res.send("Express on Vercel"); });
-module.exports = app;
 
 // START SERVER
-// app.listen(PORT, () => console.log(`SERVER DATABASE AKTIF DI http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`SERVER DATABASE AKTIF DI http://localhost:${PORT}`));

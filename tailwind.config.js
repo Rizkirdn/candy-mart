@@ -4,13 +4,15 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
-      // Kita tambahkan font agar terlihat modern
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
       },
+
     },
   },
+  
   plugins: [],
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useCartStore } from '../../store/cartStore';
-import { Trash2, Plus, Minus, ArrowRight, ShoppingBag, Loader2, MapPin, Truck, CreditCard, X, User, Wallet, Banknote, Building2, ChevronRight } from 'lucide-react';
+import { Trash2, Plus, Minus, ArrowRight, ShoppingBag, Loader2, MapPin, Truck, CreditCard, X, User, Wallet, Banknote, Building2, ChevronRight, Phone } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
@@ -15,7 +15,7 @@ export default function Cart() {
     address: '',
     phone: '',
     courier: 'JNE Regular',
-    payment: 'Transfer BCA'
+    payment: 'Transfer Bank'
   });
   
   // Store Cart
@@ -112,10 +112,18 @@ export default function Cart() {
               <div className="flex-1 flex flex-col justify-between">
                 <div>
                   <h3 className="font-bold text-gray-900 line-clamp-1 text-lg">{item.name}</h3>
-                  <p className="text-sm font-medium text-blue-600">Rp {item.price.toLocaleString('id-ID')}</p>
+                  {/* --- UBAH DISINI: Menampilkan Varian Warna & Ukuran --- */}
+                  <div className="flex flex-wrap gap-2 mt-1">
+                    {item.selectedColor && (
+                      <span className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded border border-gray-200">
+                        Warna: {item.selectedColor}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-sm font-bold text-blue-600 mt-2">Rp {item.price.toLocaleString('id-ID')}</p>
                 </div>
                 
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center mt-3">
                   <div className="flex items-center gap-3 bg-gray-50 rounded-lg p-1 border border-gray-200">
                     <button onClick={() => item.quantity > 1 && addToCart(item, -1)} className="w-8 h-8 flex items-center justify-center bg-white shadow-sm hover:bg-gray-100 rounded-md transition">-</button>
                     <span className="w-8 text-center font-bold text-sm">{item.quantity}</span>
@@ -182,7 +190,8 @@ export default function Cart() {
                       />
                     </div>
                     <div className="relative">
-                      <CreditCard size={18} className="absolute left-4 top-3.5 text-gray-400"/> {/* Icon Phone dummy placeholder */}
+                      {/* UBAH DISINI: Ganti icon CreditCard jadi Phone */}
+                      <Phone size={18} className="absolute left-4 top-3.5 text-gray-400"/> 
                       <input 
                         type="text" name="phone" placeholder="Nomor WhatsApp" required
                         value={formData.phone} onChange={handleChange}
@@ -197,7 +206,7 @@ export default function Cart() {
                   ></textarea>
                 </div>
 
-                {/* 2. SECTION: KURIR (GRID CARD) */}
+                {/* 2. SECTION: KURIR */}
                 <div className="mb-6">
                   <h4 className="font-bold text-sm text-gray-500 uppercase tracking-wider mb-3 flex items-center gap-2 px-1">
                     <Truck size={16}/> Pilih Kurir
@@ -222,13 +231,12 @@ export default function Cart() {
                   </div>
                 </div>
 
-                {/* 3. SECTION: PEMBAYARAN (GRID CARD MODERN) */}
+                {/* 3. SECTION: PEMBAYARAN */}
                 <div>
                   <h4 className="font-bold text-sm text-gray-500 uppercase tracking-wider mb-3 flex items-center gap-2 px-1">
                     <Wallet size={16}/> Metode Pembayaran
                   </h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    
                     {/* Bank Transfer */}
                     <div 
                       onClick={() => selectOption('payment', 'Transfer Bank')}
@@ -267,7 +275,6 @@ export default function Cart() {
                       </div>
                       {formData.payment === 'COD' && <div className="w-4 h-4 rounded-full bg-blue-500"></div>}
                     </div>
-
                   </div>
                 </div>
 
